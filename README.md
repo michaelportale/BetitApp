@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# BetIt
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+BetIt is a React Native mobile application for creating and tracking social bets within groups. The app includes authentication, group participation, bet creation and resolution workflows, ledger views, notifications, and payment-oriented screens.
 
-## Get started
+## Stack
 
-1. Install dependencies
+- Expo and React Native
+- TypeScript and Expo Router
+- Supabase client integration
+- Stripe React Native components
+- Jest, ESLint, and Detox configuration
 
-   ```bash
-   npm install
-   ```
+## Local development
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install dependencies with the package manager represented by the checked-in lockfile, then start Expo:
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Useful commands:
 
-## Learn more
+```bash
+npm run lint
+npm test
+npm run ios
+npm run android
+npm run web
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Environment
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Create a local `.env` file for the public Supabase application configuration required by the client. Environment files and Expo local state are intentionally excluded from version control.
 
-## Join the community
+## Repository layout
 
-Join our community of developers creating universal apps.
+```text
+app/        Expo Router screens and navigation
+src/        Services, state, components, and integrations
+e2e/        End-to-end test configuration
+assets/     Application assets
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Notes
+
+This repository contains product and engineering work for the BetIt mobile client. Any production payment, identity, or regulatory requirements must be reviewed separately before launch.

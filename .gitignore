@@ -7,3 +7,15 @@ expo-env.d.ts
 
 .claude
 CLAUDE.md
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Expo-generated local state
+.expo/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
