@@ -26,6 +26,8 @@ export const Loading = React.memo<LoadingProps>(
   }
 );
 
+Loading.displayName = 'Loading';
+
 interface LoadingOverlayProps {
   visible: boolean;
   message?: string;
@@ -42,6 +44,8 @@ export const LoadingOverlay = React.memo<LoadingOverlayProps>(({ visible, messag
     </View>
   );
 });
+
+LoadingOverlay.displayName = 'LoadingOverlay';
 
 const styles = StyleSheet.create({
   container: {

@@ -196,7 +196,7 @@ const JoinGroupScreen = () => {
             </View>
 
             <View style={styles.footer}>
-              <Text style={styles.footerText}>Don't have an invite code? </Text>
+              <Text style={styles.footerText}>Don&apos;t have an invite code? </Text>
               <TouchableOpacity
                 onPress={() => router.push('/(app)/create-group')}
                 disabled={joinGroupMutation.isPending}

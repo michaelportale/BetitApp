@@ -176,7 +176,7 @@ export const StripeConnectOnboarding: React.FC<StripeConnectOnboardingProps> = (
       </TouchableOpacity>
 
       <Text style={styles.disclaimer}>
-        You'll be redirected to Stripe to complete the secure onboarding process.
+        You&apos;ll be redirected to Stripe to complete the secure onboarding process.
       </Text>
     </View>
   );

@@ -110,6 +110,8 @@ const LedgerEntryItem = React.memo<LedgerEntryItemProps>(({ entry, onPressBet })
   );
 });
 
+LedgerEntryItem.displayName = 'LedgerEntryItem';
+
 const LedgerScreen = () => {
   const router = useRouter();
   const { user } = useAuth();

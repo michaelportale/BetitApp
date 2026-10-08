@@ -153,7 +153,7 @@ const NotificationsScreen = () => {
       <BellOff color={colors.textSecondary} size={64} />
       <Text style={styles.emptyTitle}>No notifications yet</Text>
       <Text style={styles.emptyMessage}>
-        You'll see updates about bets, groups, and voting here.
+        You&apos;ll see updates about bets, groups, and voting here.
       </Text>
     </View>
   );
