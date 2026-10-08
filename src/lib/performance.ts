@@ -26,10 +26,7 @@ export class PerformanceMonitor {
     console.log('Performance monitoring initialized (stub)');
   }
 
-  static async monitorAsyncOperation<T>(
-    name: string,
-    operation: () => Promise<T>
-  ): Promise<T> {
+  static async monitorAsyncOperation<T>(name: string, operation: () => Promise<T>): Promise<T> {
     return operation();
   }
 }
@@ -42,15 +39,16 @@ export const withPerformanceMonitoring = <P extends object>(
   return function PerformanceMonitoredComponent(props: P) {
     React.useEffect(() => {
       PerformanceMonitor.startTimer(`${componentName}-mount`);
-      
+
       return () => {
         const mountTime = PerformanceMonitor.endTimer(`${componentName}-mount`, false);
-        if (mountTime > 100) { // Log slow mounting components
+        if (mountTime > 100) {
+          // Log slow mounting components
           console.warn(`Slow component mount: ${componentName} took ${mountTime}ms`);
         }
       };
     }, []);
-    
+
     return React.createElement(WrappedComponent, props);
   };
 };
@@ -59,7 +57,7 @@ export const withPerformanceMonitoring = <P extends object>(
 export const usePerformanceMonitoring = (componentName: string) => {
   React.useEffect(() => {
     PerformanceMonitor.startTimer(`${componentName}-render`);
-    
+
     // Use InteractionManager to measure after animations
     const interactionPromise = InteractionManager.runAfterInteractions(() => {
       const renderTime = PerformanceMonitor.endTimer(`${componentName}-render`, false);
@@ -67,7 +65,7 @@ export const usePerformanceMonitoring = (componentName: string) => {
         console.log(`${componentName} render time: ${renderTime}ms`);
       }
     });
-    
+
     return () => {
       interactionPromise.cancel();
     };

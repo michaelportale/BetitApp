@@ -62,9 +62,7 @@ const HeroScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View
-        style={[styles.heroImage, { backgroundColor: 'rgba(14, 116, 144, 0.1)' }]}
-      >
+      <View style={[styles.heroImage, { backgroundColor: 'rgba(14, 116, 144, 0.1)' }]}>
         <View style={styles.heroContent}>
           <Text style={styles.title}>BetIt</Text>
           <Text style={styles.subtitle}>

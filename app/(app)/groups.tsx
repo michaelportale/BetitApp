@@ -132,7 +132,7 @@ const GroupsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <AppHeader 
+      <AppHeader
         title="Groups"
         onMenuPress={openDrawer}
         onNotificationPress={navigateToNotifications}

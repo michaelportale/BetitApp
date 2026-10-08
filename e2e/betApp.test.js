@@ -66,14 +66,14 @@ describe('BetitApp E2E Tests', () => {
       await element(by.placeholder('Option A')).typeText('Team A Wins');
       await element(by.placeholder('Option B')).typeText('Team B Wins');
       await element(by.placeholder('Stake amount')).typeText('50');
-      
+
       // Select a group
       await element(by.text('Select Group')).tap();
       await element(by.text('College Friends')).tap();
-      
+
       // Create the bet
       await element(by.text('Create Bet')).tap();
-      
+
       await expect(element(by.text('Test E2E Bet'))).toBeVisible();
     });
   });
@@ -95,7 +95,7 @@ describe('BetitApp E2E Tests', () => {
       // Navigate to a draft bet
       await element(by.text('Bets')).tap();
       await element(by.text('Elden Ring DLC Release')).tap();
-      
+
       // Accept the bet
       await element(by.text('Accept Bet - Side A')).tap();
       await expect(element(by.text('Bet accepted!'))).toBeVisible();
@@ -112,7 +112,7 @@ describe('BetitApp E2E Tests', () => {
       // Navigate to a bet in voting stage
       await element(by.text('Bets')).tap();
       await element(by.text('Lakers vs Warriors')).tap();
-      
+
       // If bet is in voting stage, vote on outcome
       if (await element(by.text('Vote on Outcome')).isDisplayed()) {
         await element(by.text('Vote on Outcome')).tap();

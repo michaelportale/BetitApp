@@ -57,14 +57,14 @@ export class BetStore {
   private bets: Map<string, Bet> = new Map();
   private ledger: LedgerEntry[] = [];
   private groupMembers: Map<string, Set<string>> = new Map(); // groupId -> userIds
-  
+
   // Storage keys
   private STORAGE_KEYS = {
     USERS: 'betstore_users',
-    GROUPS: 'betstore_groups', 
+    GROUPS: 'betstore_groups',
     BETS: 'betstore_bets',
     LEDGER: 'betstore_ledger',
-    INITIALIZED: 'betstore_initialized'
+    INITIALIZED: 'betstore_initialized',
   };
 
   // Generate simple IDs
@@ -117,7 +117,7 @@ export class BetStore {
       this.groupMembers.set(id, new Set());
     }
     this.groupMembers.get(id)!.add(creatorId);
-    
+
     this.saveToStorage(); // Auto-save
     return group;
   }
@@ -146,7 +146,7 @@ export class BetStore {
   updateGroup(id: string, updates: Partial<Pick<Group, 'name'>>): Group | null {
     const group = this.groups.get(id);
     if (!group) return null;
-    
+
     const updatedGroup = { ...group, ...updates };
     this.groups.set(id, updatedGroup);
     this.saveToStorage();
@@ -156,17 +156,17 @@ export class BetStore {
   leaveGroup(groupId: string, userId: string): boolean {
     const group = this.groups.get(groupId);
     if (!group || !group.memberIds.includes(userId)) return false;
-    
+
     // Remove from group members
     group.memberIds = group.memberIds.filter(id => id !== userId);
     this.groups.set(groupId, group);
-    
+
     // Update members set
     const membersSet = this.groupMembers.get(groupId);
     if (membersSet) {
       membersSet.delete(userId);
     }
-    
+
     this.saveToStorage();
     return true;
   }
@@ -222,7 +222,6 @@ export class BetStore {
   getGroupBets(groupId: string): Bet[] {
     return Array.from(this.bets.values()).filter(bet => bet.groupId === groupId);
   }
-
 
   // Bet progression methods
   lockBet(betId: string): void {
@@ -360,14 +359,12 @@ export class BetStore {
 
   // User-specific query methods
   getUserGroups(userId: string): Group[] {
-    return Array.from(this.groups.values()).filter(group =>
-      group.memberIds.includes(userId)
-    );
+    return Array.from(this.groups.values()).filter(group => group.memberIds.includes(userId));
   }
 
   getUserBets(userId: string): Bet[] {
-    return Array.from(this.bets.values()).filter(bet =>
-      bet.creatorId === userId || bet.participants.some(p => p.userId === userId)
+    return Array.from(this.bets.values()).filter(
+      bet => bet.creatorId === userId || bet.participants.some(p => p.userId === userId)
     );
   }
 
@@ -378,7 +375,7 @@ export class BetStore {
         [this.STORAGE_KEYS.USERS, JSON.stringify(Array.from(this.users.entries()))],
         [this.STORAGE_KEYS.GROUPS, JSON.stringify(Array.from(this.groups.entries()))],
         [this.STORAGE_KEYS.BETS, JSON.stringify(Array.from(this.bets.entries()))],
-        [this.STORAGE_KEYS.LEDGER, JSON.stringify(this.ledger)]
+        [this.STORAGE_KEYS.LEDGER, JSON.stringify(this.ledger)],
       ]);
     } catch (error) {
       console.error('Failed to save data to storage:', error);
@@ -389,7 +386,7 @@ export class BetStore {
     try {
       const keys = Object.values(this.STORAGE_KEYS);
       const values = await AsyncStorage.multiGet(keys);
-      
+
       const usersData = values.find(([key]) => key === this.STORAGE_KEYS.USERS)?.[1];
       const groupsData = values.find(([key]) => key === this.STORAGE_KEYS.GROUPS)?.[1];
       const betsData = values.find(([key]) => key === this.STORAGE_KEYS.BETS)?.[1];
@@ -403,11 +400,13 @@ export class BetStore {
 
       if (groupsData) {
         const groupEntries = JSON.parse(groupsData);
-        this.groups = new Map(groupEntries.map(([id, group]: [string, any]) => [
-          id, 
-          { ...group, createdAt: new Date(group.createdAt) }
-        ]));
-        
+        this.groups = new Map(
+          groupEntries.map(([id, group]: [string, any]) => [
+            id,
+            { ...group, createdAt: new Date(group.createdAt) },
+          ])
+        );
+
         // Rebuild group members map
         this.groupMembers.clear();
         this.groups.forEach(group => {
@@ -417,24 +416,26 @@ export class BetStore {
 
       if (betsData) {
         const betEntries = JSON.parse(betsData);
-        this.bets = new Map(betEntries.map(([id, bet]: [string, any]) => [
-          id,
-          {
-            ...bet,
-            createdAt: new Date(bet.createdAt),
-            eventDate: new Date(bet.eventDate),
-            participants: bet.participants.map((p: any) => ({
-              ...p,
-              acceptedAt: new Date(p.acceptedAt)
-            }))
-          }
-        ]));
+        this.bets = new Map(
+          betEntries.map(([id, bet]: [string, any]) => [
+            id,
+            {
+              ...bet,
+              createdAt: new Date(bet.createdAt),
+              eventDate: new Date(bet.eventDate),
+              participants: bet.participants.map((p: any) => ({
+                ...p,
+                acceptedAt: new Date(p.acceptedAt),
+              })),
+            },
+          ])
+        );
       }
 
       if (ledgerData) {
         this.ledger = JSON.parse(ledgerData).map((entry: any) => ({
           ...entry,
-          createdAt: new Date(entry.createdAt)
+          createdAt: new Date(entry.createdAt),
         }));
       }
 
@@ -590,7 +591,7 @@ export function initializeMockData() {
 async function initializeStore() {
   try {
     const hasExistingData = await betStore.loadFromStorage();
-    
+
     if (!hasExistingData) {
       // First time - initialize with mock data
       initializeMockData();

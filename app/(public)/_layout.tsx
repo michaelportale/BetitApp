@@ -20,4 +20,4 @@ export default function PublicLayout() {
       <Stack.Screen name="dev-login" options={{ headerShown: false }} />
     </Stack>
   );
-} 
+}
