@@ -88,23 +88,18 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ isVisible, onClose }) => {
           {/* Menu Items */}
           <View style={styles.menuContainer}>
             {menuItems.map((item, index) => {
-              const isActive = currentRoute === item.route || 
-                             (item.route === '/(app)/' && currentRoute === '/(app)/');
-              
+              const isActive =
+                currentRoute === item.route ||
+                (item.route === '/(app)/' && currentRoute === '/(app)/');
+
               return (
                 <TouchableOpacity
                   key={index}
                   style={[styles.menuItem, isActive && styles.menuItemActive]}
                   onPress={() => handleNavigation(item.route)}
                 >
-                  <item.icon 
-                    color={isActive ? colors.primary : colors.textSecondary} 
-                    size={22} 
-                  />
-                  <Text style={[
-                    styles.menuItemText,
-                    isActive && styles.menuItemTextActive
-                  ]}>
+                  <item.icon color={isActive ? colors.primary : colors.textSecondary} size={22} />
+                  <Text style={[styles.menuItemText, isActive && styles.menuItemTextActive]}>
                     {item.label}
                   </Text>
                   {item.showBadge && (

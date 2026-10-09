@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -76,7 +75,7 @@ export default function LoginScreen() {
 
         <TouchableOpacity style={styles.button} onPress={handleAuth} disabled={isLoading}>
           <Text style={styles.buttonText}>
-            {isLoading ? 'Loading...' : (isLogin ? 'Login' : 'Sign Up')}
+            {isLoading ? 'Loading...' : isLogin ? 'Login' : 'Sign Up'}
           </Text>
         </TouchableOpacity>
 
@@ -84,26 +83,26 @@ export default function LoginScreen() {
           <View style={styles.quickLoginSection}>
             <Text style={styles.quickLoginTitle}>Quick Login (Dev)</Text>
             <View style={styles.quickLoginButtons}>
-              <TouchableOpacity 
-                style={styles.quickLoginButton} 
+              <TouchableOpacity
+                style={styles.quickLoginButton}
                 onPress={() => handleQuickLogin('alice@test.com')}
               >
                 <Text style={styles.quickLoginText}>Alice</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.quickLoginButton} 
+              <TouchableOpacity
+                style={styles.quickLoginButton}
                 onPress={() => handleQuickLogin('bob@test.com')}
               >
                 <Text style={styles.quickLoginText}>Bob</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.quickLoginButton} 
+              <TouchableOpacity
+                style={styles.quickLoginButton}
                 onPress={() => handleQuickLogin('charlie@test.com')}
               >
                 <Text style={styles.quickLoginText}>Charlie</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.quickLoginButton} 
+              <TouchableOpacity
+                style={styles.quickLoginButton}
                 onPress={() => handleQuickLogin('diana@test.com')}
               >
                 <Text style={styles.quickLoginText}>Diana</Text>
@@ -223,4 +222,4 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
   },
-}); 
+});

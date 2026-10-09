@@ -16,8 +16,6 @@ const RootLayout = () => {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-
-
   // Create a client
   const queryClient = new QueryClient({
     defaultOptions: {

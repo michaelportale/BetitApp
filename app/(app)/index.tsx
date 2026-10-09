@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Users, TrendingUp, Vote, Trophy, Plus } from 'lucide-react-native';
@@ -8,11 +7,17 @@ import { useAuth } from '../../src/contexts/AuthContext';
 import { useAppNavigation } from './_layout';
 import AppHeader from '@/components/ui/AppHeader';
 
-const StatCard = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) => (
+const StatCard = ({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+}) => (
   <View style={styles.statCard}>
-    <View style={styles.statIconContainer}>
-      {icon}
-    </View>
+    <View style={styles.statIconContainer}>{icon}</View>
     <View>
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
@@ -20,7 +25,15 @@ const StatCard = ({ icon, label, value }: { icon: React.ReactNode, label: string
   </View>
 );
 
-const ListItem = ({ title, subtitle, onPress }: { title: string, subtitle: string, onPress: () => void }) => (
+const ListItem = ({
+  title,
+  subtitle,
+  onPress,
+}: {
+  title: string;
+  subtitle: string;
+  onPress: () => void;
+}) => (
   <View style={styles.listItem}>
     <View style={styles.listItemTextContainer}>
       <Text style={styles.listItemTitle}>{title}</Text>
@@ -36,7 +49,7 @@ export default function DashboardScreen() {
   const router = useRouter();
   const { user, isLoading: authLoading } = useAuth();
   const { openDrawer, navigateToNotifications, notificationCount } = useAppNavigation();
-  
+
   if (authLoading) {
     return (
       <View style={styles.container}>
@@ -44,7 +57,7 @@ export default function DashboardScreen() {
       </View>
     );
   }
-  
+
   if (!user) {
     return (
       <View style={styles.container}>
@@ -60,7 +73,7 @@ export default function DashboardScreen() {
 
   return (
     <View style={styles.container}>
-      <AppHeader 
+      <AppHeader
         title="Dashboard"
         onMenuPress={openDrawer}
         onNotificationPress={navigateToNotifications}
@@ -73,10 +86,26 @@ export default function DashboardScreen() {
         </View>
 
         <View style={styles.statsGrid}>
-          <StatCard icon={<Users color="#0e7490" size={32} />} label="Groups" value={groups.length} />
-          <StatCard icon={<TrendingUp color="#f59e0b" size={32} />} label="Active Bets" value={bets.length} />
-          <StatCard icon={<Vote color="#8b5cf6" size={32} />} label="Awaiting Vote" value={awaitingVoteCount} />
-          <StatCard icon={<Trophy color="#10b981" size={32} />} label="Net Balance" value={`$${userBalance}`} />
+          <StatCard
+            icon={<Users color="#0e7490" size={32} />}
+            label="Groups"
+            value={groups.length}
+          />
+          <StatCard
+            icon={<TrendingUp color="#f59e0b" size={32} />}
+            label="Active Bets"
+            value={bets.length}
+          />
+          <StatCard
+            icon={<Vote color="#8b5cf6" size={32} />}
+            label="Awaiting Vote"
+            value={awaitingVoteCount}
+          />
+          <StatCard
+            icon={<Trophy color="#10b981" size={32} />}
+            label="Net Balance"
+            value={`$${userBalance}`}
+          />
         </View>
 
         <View style={styles.section}>
@@ -113,10 +142,7 @@ export default function DashboardScreen() {
           ))}
         </View>
       </ScrollView>
-      <TouchableOpacity
-        style={styles.fab}
-        onPress={() => router.push('/create-group')}
-      >
+      <TouchableOpacity style={styles.fab} onPress={() => router.push('/create-group')}>
         <Plus color="white" size={24} />
       </TouchableOpacity>
     </View>
@@ -234,4 +260,4 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     elevation: 8,
   },
-}); 
+});

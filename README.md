@@ -12,21 +12,23 @@ BetIt is a React Native mobile application for creating and tracking social bets
 
 ## Local development
 
-Install dependencies with the package manager represented by the checked-in lockfile, then start Expo:
+This project uses [Yarn Classic (v1)](https://classic.yarnpkg.com/) and Node.js 20. Install dependencies from the checked-in `yarn.lock`, then start Expo:
 
 ```bash
-npm install
-npx expo start
+yarn install --frozen-lockfile
+yarn start
 ```
 
 Useful commands:
 
 ```bash
-npm run lint
-npm test
-npm run ios
-npm run android
-npm run web
+yarn lint
+yarn format:check
+yarn test
+npx tsc --noEmit
+yarn ios
+yarn android
+yarn web
 ```
 
 ## Environment

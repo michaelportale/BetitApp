@@ -98,7 +98,7 @@ This guide covers the accessibility features implemented in BetIt and how to tes
 ### Using Flipper (React Native)
 ```bash
 # Install Flipper accessibility plugin
-npm install --save-dev react-native-flipper
+yarn add --dev react-native-flipper
 ```
 
 ### Accessibility Inspector (iOS Simulator)

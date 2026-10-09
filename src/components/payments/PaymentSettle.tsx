@@ -97,7 +97,7 @@ export const PaymentSettle: React.FC<PaymentSettleProps> = ({
           <CheckCircle color={colors.textSecondary} size={32} />
           <Text style={styles.statusTitle}>No Pending Payouts</Text>
           <Text style={styles.statusMessage}>
-            You don't have any winnings available for payout at this time.
+            You don&apos;t have any winnings available for payout at this time.
           </Text>
         </View>
       </View>

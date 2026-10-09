@@ -1,5 +1,9 @@
 import { betStore, type Bet } from '@/lib/betStore';
-import { PaginatedResponse, PaginationParams, createPaginatedResponse } from '@/hooks/usePaginatedQuery';
+import {
+  PaginatedResponse,
+  PaginationParams,
+  createPaginatedResponse,
+} from '@/hooks/usePaginatedQuery';
 
 export class BetService {
   // Read operations
@@ -34,7 +38,9 @@ export class BetService {
   }
 
   // Write operations
-  static async createBet(bet: Omit<Bet, 'id' | 'status' | 'participants' | 'createdAt'>): Promise<Bet> {
+  static async createBet(
+    bet: Omit<Bet, 'id' | 'status' | 'participants' | 'createdAt'>
+  ): Promise<Bet> {
     return betStore.createBet(bet);
   }
 

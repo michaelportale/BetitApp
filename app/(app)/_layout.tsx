@@ -79,12 +79,9 @@ const AppLayout = () => {
           <Stack.Screen name="create-group" />
           <Stack.Screen name="join-group" />
         </Stack>
-        
+
         {/* Hamburger Drawer Menu */}
-        <DrawerMenu 
-          isVisible={isDrawerVisible} 
-          onClose={handleDrawerClose} 
-        />
+        <DrawerMenu isVisible={isDrawerVisible} onClose={handleDrawerClose} />
       </AppNavContext.Provider>
     </SafeAreaProvider>
   );

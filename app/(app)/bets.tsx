@@ -56,6 +56,8 @@ const BetItem = React.memo<{ bet: Bet; onPress: () => void }>(({ bet, onPress })
   );
 });
 
+BetItem.displayName = 'BetItem';
+
 const BetsScreen = () => {
   const router = useRouter();
   const { user } = useAuth();

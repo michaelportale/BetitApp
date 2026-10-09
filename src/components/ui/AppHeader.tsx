@@ -36,10 +36,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         {/* Right side - Notifications */}
         <View style={styles.rightSection}>
           {showNotifications && (
-            <TouchableOpacity 
-              onPress={onNotificationPress} 
-              style={styles.notificationButton}
-            >
+            <TouchableOpacity onPress={onNotificationPress} style={styles.notificationButton}>
               <Bell color={colors.textSecondary} size={22} />
               {notificationCount > 0 && (
                 <View style={styles.notificationBadge}>

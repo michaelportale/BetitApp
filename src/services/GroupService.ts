@@ -23,7 +23,10 @@ export class GroupService {
     return betStore.joinGroup(inviteCode, userId);
   }
 
-  static async updateGroup(id: string, updates: Partial<Pick<Group, 'name'>>): Promise<Group | null> {
+  static async updateGroup(
+    id: string,
+    updates: Partial<Pick<Group, 'name'>>
+  ): Promise<Group | null> {
     return betStore.updateGroup(id, updates);
   }
 

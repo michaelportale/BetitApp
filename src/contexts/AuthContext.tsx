@@ -26,7 +26,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Start as loading
-  
+
   // Storage key for persisting auth state
   const AUTH_STORAGE_KEY = 'auth_user';
 
@@ -62,18 +62,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ): Promise<{ success: boolean; error?: string }> => {
     try {
       setIsLoading(true);
-      
+
       // Mock authentication - find user by email
       const users = betStore.getAllUsers();
       const foundUser = users.find(u => u.email === email.trim().toLowerCase());
-      
+
       if (foundUser) {
         setUser(foundUser);
         // Persist user to storage
         await AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(foundUser));
         return { success: true };
       }
-      
+
       return { success: false, error: 'Invalid email or password' };
     } catch (error) {
       console.error('Sign in error:', error);
@@ -90,19 +90,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ): Promise<{ success: boolean; error?: string }> => {
     try {
       setIsLoading(true);
-      
+
       // Check if user already exists
       const existingUser = betStore.getUserByEmail(email.trim().toLowerCase());
       if (existingUser) {
         return { success: false, error: 'User with this email already exists' };
       }
-      
+
       // Create and store new user in betStore
       const newUser = betStore.addUser({
         email: email.trim().toLowerCase(),
         displayName: displayName.trim(),
       });
-      
+
       setUser(newUser);
       // Persist user to storage
       await AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newUser));

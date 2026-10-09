@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -26,8 +25,8 @@ function GroupDetailsScreen() {
           <ArrowLeft color="white" size={24} />
         </TouchableOpacity>
         <Text style={styles.title}>{group.name}</Text>
-        <TouchableOpacity 
-          onPress={() => router.push(`/create-bet?groupId=${group.id}`)} 
+        <TouchableOpacity
+          onPress={() => router.push(`/create-bet?groupId=${group.id}`)}
           style={styles.createBetButton}
         >
           <Plus color="white" size={24} />
@@ -51,13 +50,15 @@ function GroupDetailsScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Bets</Text>
         {bets.map((bet: Bet) => (
-          <TouchableOpacity 
-            key={bet.id} 
+          <TouchableOpacity
+            key={bet.id}
             style={styles.betCard}
             onPress={() => router.push(`/bet/${bet.id}`)}
           >
             <Text style={styles.betTitle}>{bet.title}</Text>
-            <Text style={styles.betSubtitle}>{bet.sideA} vs. {bet.sideB}</Text>
+            <Text style={styles.betSubtitle}>
+              {bet.sideA} vs. {bet.sideB}
+            </Text>
             <View style={styles.betMeta}>
               <Text style={styles.betMetaText}>Stake: ${bet.stake}</Text>
               <Text style={styles.betMetaText}>Status: {bet.status}</Text>
