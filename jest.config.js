@@ -3,11 +3,13 @@ module.exports = {
   projects: [
     {
       displayName: 'Unit Tests',
-      preset: 'ts-jest',
-      testEnvironment: 'node',
+      preset: 'jest-expo',
       setupFilesAfterEnv: ['<rootDir>/src/test/setup.ts'],
-      testMatch: ['**/lib/**/__tests__/**/*.(ts|tsx|js)', '**/lib/**/*.(test|spec).(ts|tsx|js)'],
-      collectCoverageFrom: ['src/lib/**/*.{ts,tsx}', '!src/lib/**/*.d.ts'],
+      testMatch: [
+        '**/lib/**/__tests__/**/*.(ts|tsx|js)',
+        '**/services/**/__tests__/**/*.(ts|tsx|js)',
+      ],
+      collectCoverageFrom: ['src/lib/**/*.{ts,tsx}', 'src/services/**/*.{ts,tsx}'],
       moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
       },
